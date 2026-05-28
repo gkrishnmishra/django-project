@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO App</title>
+</head>
+<body>
+
+    <h1>TODO</h1>
+
+    {% for i in tasks %}
+    <div>
+        <p>{{ i.title }} - {{ i.complete }}</p>
+        <a href="{% url 'update_task' i.id %}">Edit</a>
+        <a href="{% url 'delete_task' i.id %}">Delete</a>
+    </div>
+    {% endfor %}
+    
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div>
+            <label>Title</label>
+            <input type="text" name="title" placeholder="Enter Title">
+        </div>
+
+        <div>
+            <label>Check Completed Task</label>
+            <input type="checkbox" name="complete">
+        </div>
+
+        <div>
+            <button type="submit">Save</button>
+        </div>
+    </form>
+
+</body>
+</html>
